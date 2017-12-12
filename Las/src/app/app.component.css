@@ -5,3 +5,7 @@ a.navbar-item:hover{
 .connect{
   background-color: #fcaf3e;
 }
+
+nav{
+  margin-bottom: 15px;
+}

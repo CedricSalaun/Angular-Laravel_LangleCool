@@ -7,6 +7,7 @@ import {CategoriesComponent} from "./categories/categories.component";
 import {UsersComponent} from "./users/users.component";
 import {LocationsComponent} from "./locations/locations.component";
 import {ShowComponent} from "./show/show.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   {path: '', component: AdvertsComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'utilisateurs', component: UsersComponent},
   {path: 'departements', component: LocationsComponent},
-  {path: 'details', component: ShowComponent}
+  {path: 'details', component: ShowComponent},
+  {path: 'enregistrement', component: RegisterComponent}
 ];
 
 @NgModule({
