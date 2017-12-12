@@ -1,0 +1,105 @@
+<nav class="navbar is-transparent is-fixed-top"
+     id="menu">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="">
+      <img src="../assets/img/cube_orange.svg.hi.png"
+           height="35">
+    </a>
+
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="navbarExampleTransparentExample"
+       class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="">
+        Page d'acceuil
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Docs
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" routerLink="utilisateurs">
+            Utilisateur
+          </a>
+          <a class="navbar-item" routerLink="categories">
+            Catégories
+          </a>
+          <a class="navbar-item" routerLink="departements">
+            Départements
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field">
+          <app-search-box></app-search-box>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="field">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Catégories
+            </a>
+
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item">
+                Trucs
+              </a>
+              <a class="navbar-item">
+                Bidules
+              </a>
+              <a class="navbar-item">
+                Machins
+              </a>
+              <hr class="navbar-divider">
+              <div class="navbar-item">
+                Puuu je sais pas
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="field is-grouped">
+<!--
+          <p class="control">
+            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet"
+               data-social-target="http://localhost:4000" target="_blank"
+               href="">
+              <span class="icon">
+                <i class="fa fa-twitter"></i>
+              </span>
+              <span>
+                Tweet
+              </span>
+            </a>
+          </p>
+-->
+          <p class="control">
+            <a class="button connect"
+               routerLink="identification">
+              <span class="icon">
+                <i class="fa fa-download"></i>
+              </span>
+              <span>Se connecter</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+  <section class="section">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>
