@@ -8,6 +8,7 @@ use App\Http\Resources\Adverts as AdvertsResource;
 
 class AdvertController extends Controller
 {
+    
     public function showAll(){
         return Adverts::all();
     }
