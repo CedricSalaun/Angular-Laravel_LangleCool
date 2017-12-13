@@ -11,6 +11,7 @@ class AdvertController extends Controller
     public function showAll(){
         return Adverts::all();
     }
+    
     public function showOne($id){
         return Adverts::find($id);
     }
