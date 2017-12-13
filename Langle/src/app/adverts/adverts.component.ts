@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-adverts',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adverts.component.css']
 })
 export class AdvertsComponent implements OnInit {
-  title = 'L\'Angle Cool';
 
-  constructor() { }
+  results: any;
 
-  ngOnInit() {
+  public title = 'L\'Angle Cool';
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit():any {
+    this.http.get('http://localhost:8000/api/adverts/all').subscribe(data=>{
+      this.results = data;
+      console.log(this.results);
+    })
   }
 
 }

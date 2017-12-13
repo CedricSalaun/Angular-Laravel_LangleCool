@@ -1,5 +1,6 @@
-export class Categories{
-    constructor(public id: number,
-                public name: string){
-    }
+export class Categories {
+  constructor(
+    public id: number,
+    public name: string
+  ){}
 }

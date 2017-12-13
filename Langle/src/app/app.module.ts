@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { AdvertsComponent } from './adverts/adverts.component';
@@ -18,6 +17,8 @@ import { AnswersComponent } from './answers/answers.component';
 import { FormsModule } from "@angular/forms";
 import { CategoriesFormComponent } from './categories-form/categories-form.component';
 import { LocationsFormComponent } from './locations-form/locations-form.component';
+import { HttpClientModule } from "@angular/common/http";
+import { AdvertsService } from "./adverts.service";
 
 
 @NgModule({
@@ -41,10 +42,11 @@ import { LocationsFormComponent } from './locations-form/locations-form.componen
         BrowserModule,
         AppRoutingModule,
         FormsModule,
+        HttpClientModule
 
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    providers: [ AdvertsService ],
+    bootstrap: [ AppComponent ]
 })
 export class AppModule{
 }
