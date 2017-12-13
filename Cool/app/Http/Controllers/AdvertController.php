@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Adverts;
-use App\Http\Resources\Adverts as AdvertsResource;
+use App\Categories;
+use App\Locations;
+use App\Users;
 
 class AdvertController extends Controller
 {
     
     public function showAll(){
-        return Adverts::all();
+        $adverts = Adverts::all();
+        $users = Users::all();
+        $categories = Categories::all();
+        $locations = Locations::all();
+        return compact('adverts', 'categories', 'locations', 'users');
     }
     
     public function showOne($id){
-        return Adverts::find($id);
+        $adverts = Adverts::find($id);
+        $users = Users::all();
+        $categories = Categories::all();
+        $locations = Locations::all();
+        return compact('adverts', 'categories', 'locations', 'users');
     }
 }

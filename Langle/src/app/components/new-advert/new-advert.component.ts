@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Adverts } from "../adverts";
+import { Adverts } from "../../classes/adverts";
 
 //TODO ajouter un select avec les catégories --> ajouter les clés étrangeres
 
