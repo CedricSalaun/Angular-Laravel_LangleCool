@@ -25,4 +25,10 @@ class AdvertController extends Controller
         $locations = Locations::all();
         return compact('adverts', 'categories', 'locations', 'users');
     }
+    public function newOne($id){
+        $user = Users::find($id);
+        $categories = Categories::all();
+        $locations = Locations::all();
+        return compact('categories', 'locations', 'user');
+    }
 }

@@ -1,40 +1,71 @@
-<div class="columns">
-    <div class="column">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                </figure>
-            </div>
-            <div class="card-content is-left">
-                <p class="subtitle is-4">{{advert?.title}}</p>
-
-                <div class="media" *ngFor="let user of users">
-                    {{user?.firstname}}
-                </div>
-
-                <div class="card-content is-right">
-                    <div class="media-left" *ngFor="let location of locations">
-                        {{location?.name}}
-                    </div>
-
-                    <div class="card-content is-right" *ngFor="let category of categories">
-                        <div class="media-left" *ngIf="advert.category_id == category.id">
-                            {{category?.name}}
-                        </div>
-
-                        <div class="media-content">
-                            <p class="subtitle is-6">{{advert?.price}} €</p>
-                        </div>
-                    </div>
-                    <div class="content">
-                        {{advert?.description}}
-                        <br>
-                        <time datetime="2016-1-1">{{advert?.created_at}}</time>
-                    </div>
-                </div>
-                        <a routerLink="reponse/{{advert?.user_id}}" class="button is-primary">Envoyer un message</a>
-            </div>
+<div class="columns is-centered">
+  <div class="column is-8">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+        </figure>
+      </div>
+      <div class="card-content">
+        <p class="title is-4">{{result?.advert?.title}}</p>
+        <p class="subtitle is-6">{{result?.user}}</p>
+        <p class="subtitle is-6">{{result?.location}}</p>
+        <p class="subtitle is-6">{{result?.category}}</p>
+        <p class="subtitle is-6">{{result?.advert?.price}} €</p>
+        <div class="card-content">
+          {{result?.advert?.description}}
+          <br>
+          <time datetime="2016-1-1">{{result?.advert?.created_at}}</time>
         </div>
+      </div>
+    <div class="column is-centered">
+      <a class="button is-primary btn-modal">Envoyer un message</a>
     </div>
+    </div>
+    <br>
+  </div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Envoyer un message à l'annonceur</p>
+      <button class="delete close-modal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Votre nom</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="e.g Geoge">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Votre prénom</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="e.g. Guy">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Votre téléphone</label>
+        <div class="control">
+          <input class="input" type="number" placeholder="06 56 96 07 06">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Votre email</label>
+        <div class="control">
+          <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea" placeholder="Votre message"></textarea>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save</button>
+      <button class="button close-modal">Delete</button>
+    </footer>
+  </div>
 </div>

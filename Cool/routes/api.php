@@ -17,4 +17,5 @@
     
     Route::get('/adverts/all', "AdvertController@showAll");
     Route::get('/adverts/{id}', "AdvertController@showOne");
+    Route::get('/adverts/new/{id}', "AdvertController@newOne");
     

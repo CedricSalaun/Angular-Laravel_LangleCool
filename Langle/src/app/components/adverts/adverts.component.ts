@@ -19,14 +19,14 @@ export class AdvertsComponent implements OnInit{
     constructor(private http: HttpClient){
     }
 
-    ngOnInit(): void{
+    ngOnInit(): any{
         let url = 'http://localhost:8000/api/adverts/all';
         this.http.get(url)
             .subscribe(data =>{
-                this.users = data.users;
-                this.categories = data.categories;
-                this.locations = data.locations;
-                this.adverts = data.adverts;
+                this.users = data["users"];
+                this.categories = data["categories"];
+                this.locations = data["locations"];
+                this.adverts = data["adverts"];
             })
     }
 
