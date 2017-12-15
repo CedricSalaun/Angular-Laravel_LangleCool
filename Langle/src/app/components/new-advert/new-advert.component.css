@@ -1,7 +1,10 @@
-.column{
-    margin-top: 10em;
+h1{
+  margin-top: 5em;
 }
 
-h1{
-  margin-top: 10em;
+.is-left, .is-right{
+  display: inline-block;
+}
+.is-left{
+  margin-right: 3em;
 }

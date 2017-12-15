@@ -19,7 +19,7 @@
         </div>
       </div>
     <div class="column is-centered">
-      <a class="button is-primary btn-modal">Envoyer un message</a>
+      <a class="button is-primary btn-modal" (click)="modalOpen()">Envoyer un message</a>
     </div>
     </div>
     <br>
@@ -30,7 +30,7 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Envoyer un message à l'annonceur</p>
-      <button class="delete close-modal" aria-label="close"></button>
+      <button class="delete close-modal" aria-label="close" (click)="modalClose()"></button>
     </header>
     <section class="modal-card-body">
       <div class="field">
@@ -65,7 +65,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success">Save</button>
-      <button class="button close-modal">Delete</button>
+      <button class="button close-modal" (click)="modalClose()">Delete</button>
     </footer>
   </div>
 </div>

@@ -36,7 +36,7 @@ import { AdvertsService } from "./services/adverts.service";
         UserAccountComponent,
         AnswersComponent,
         CategoriesFormComponent,
-        LocationsFormComponent
+        LocationsFormComponent,
     ],
     imports: [
         BrowserModule,

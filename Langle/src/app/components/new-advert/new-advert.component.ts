@@ -1,9 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Adverts } from "../../classes/adverts";
-import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from "@angular/router";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
-//TODO ajouter un select avec les catégories --> ajouter les clés étrangeres
 
 @Component({
   selector: 'app-new-advert',
@@ -15,7 +14,7 @@ export class NewAdvertComponent implements OnInit {
   //TODO initialiser le is_active a true
 
   private submitted = false;
-  adverts: any;
+  advert: any;
   categories: any;
   locations: any;
   users: any;
@@ -34,12 +33,23 @@ export class NewAdvertComponent implements OnInit {
       .subscribe(data => {
         this.categories = data["categories"];
         this.locations = data["locations"];
-        console.log(this.locations, this.categories)
-      })
+      });
   }
 
-  onSubmit() {
-    this.submitted = true;
+  private headers = new Headers({'Content-Type': 'application/json'});
+
+  onSubmit(form: NgForm): Promise<any> {
+    let url = "http://localhost:8000/api/adverts/new";
+
+    return this.http.post(url, JSON.stringify(form.value))
+      .toPromise()
+      .then(res => console.log('tahi'))
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
 

@@ -15,27 +15,4 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-
-  // Toggle Modal
-  let $btnmodal = Array.prototype.slice.call(document.querySelectorAll('.btn-modal'), 0);
-  if ($btnmodal.length > 0) {
-    $btnmodal.forEach(function ($el) {
-      $el.addEventListener('click', function () {
-        let $target = document.getElementById('modal');
-        console.log($target);
-        $el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-      });
-    });
-    let $closemodal = Array.prototype.slice.call(document.querySelectorAll('.close-modal'), 0);
-    if ($closemodal.length > 0) {
-      $closemodal.forEach(function ($el) {
-        $el.addEventListener('click', function () {
-          let $target = document.getElementById('modal');
-          $el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
-      });
-    }
-  }
 });

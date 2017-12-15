@@ -1,32 +1,49 @@
-<!--<h1 class="is-centered">Ajouter une annonce</h1>
+<h1 class="is-centered">Ajouter une annonce</h1>
 <div class="column">
-  <form>
+  <form (ngSubmit)="onSubmit(fm)" #fm="ngForm">
     <div class="field">
       <label class="label" for="title">Titre</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Titre" id="title" name="title" required>
+        <input class="input" type="text" placeholder="Titre" id="title" name="title" ngModel >
       </div>
     </div>
     <div class="field">
       <label class="label" for="price">Prix</label>
       <div class="control">
-        <input class="input" type="number" placeholder="Prix" id="price" name="price" required
-               [(ngModel)]="NewAdvert.price">
+        <input class="input" type="number" placeholder="Prix" id="price" name="price" ngModel >
       </div>
     </div>
     <div class="field">
       <label class="label">Description</label>
       <div class="control">
-                <textarea class="textarea" placeholder="Ici la description" name="description"></textarea>
+        <textarea class="textarea" placeholder="Ici la description" name="description" ngModel ></textarea>
       </div>
     </div>
-    &lt;!&ndash;select&ndash;&gt;
-
+    <!--select-->
+    <div class="field">
+      <div class="control is-left">
+        <label class="file-label">Categories
+        </label>
+        <div class="select">
+          <select title="categories" id="category" name="category">
+            <option *ngFor="let category of categories">{{category?.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="control is-right">
+        <label class="file-label">Départements</label>
+        <div class="select">
+          <select title="locations" id="location" name="location">
+            <option *ngFor="let location of locations" value="[ngModel]">{{location?.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <div class="field">
       <div class="control">
         <label class="checkbox">
           <input type="checkbox">
-          I agree to the <a href="#">terms and conditions</a>
+          I agree to the <a>terms and conditions</a>
         </label>
       </div>
     </div>
@@ -45,7 +62,7 @@
     <div class="field">
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link" type="submit" [disabled]="!NewAdvert.form.valid">Submit</button>
+          <button class="button is-link" type="submit">Submit</button>
         </div>
         <div class="control">
           <button class="button is-text">Cancel</button>
@@ -54,29 +71,4 @@
     </div>
   </form>
 </div>
-<div class="field">
-  &lt;!&ndash;
-          <div class="control is-left">
-            <label class="file-label">Categories
-            </label>
-            <div class="select">
-              <select title="categories" id="category" name="category">
-                <option *ngFor="let category of categories" [value]="category">{{category?.name}}</option>
-              </select>
-            </div>
-          </div>
-  &ndash;&gt;
-  <div class="control is-right">
-    <label class="file-label">Départements</label>
-    <div class="select">
-      <select title="locations" id="location" name="location" [(ngModel)]="locations.id">
-        <option *ngFor="let location of locations" [value]="location">{{location}}</option>
-      </select>
-    </div>
-  </div>
-</div>-->
-<label for="i">
-  <select name="i" id="i">
-    <option *ngFor="let location of locations" [value]="i">{{location?.name}}</option>
-  </select>
-</label>
+
