@@ -1,11 +1,9 @@
-a.navbar-item:hover{
-  color: #fcaf3e;
+a.navbar-item:hover {
+    color : #fcaf3e;
 }
-
-.connect{
-  background-color: #fcaf3e;
+.connect {
+    background-color : #fcaf3e;
 }
-
-nav{
-  margin-bottom: 15px;
+nav {
+    margin-bottom : 15px;
 }
