@@ -48,5 +48,5 @@ import { AdvertsService } from "./services/adverts.service";
     providers: [ AdvertsService ],
     bootstrap: [ AppComponent ]
 })
-export class AppModule{
+export class AppModule {
 }
