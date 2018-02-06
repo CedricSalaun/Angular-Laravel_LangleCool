@@ -14,12 +14,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { NewAdvertComponent } from './components/new-advert/new-advert.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { AnswersComponent } from './components/answers/answers.component';
-import { FormsModule } from "@angular/forms";
-import { CategoriesFormComponent } from './components/categories-form/categories-form.component';
-import { LocationsFormComponent } from './components/locations-form/locations-form.component';
 import { HttpClientModule } from "@angular/common/http";
 import { AdvertsService } from "./services/adverts.service";
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -35,18 +32,17 @@ import { AdvertsService } from "./services/adverts.service";
         NewAdvertComponent,
         UserAccountComponent,
         AnswersComponent,
-        CategoriesFormComponent,
-        LocationsFormComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
 
     ],
     providers: [ AdvertsService ],
     bootstrap: [ AppComponent ]
 })
+
 export class AppModule{
 }

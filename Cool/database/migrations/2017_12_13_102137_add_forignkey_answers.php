@@ -14,6 +14,10 @@
                 $table->foreign('advert_id')
                       ->references('id')->on('adverts')
                       ->onDelete('cascade');
+                $table->integer('advert_title')->unsigned()->nullable();
+                $table->foreign('advert_title')
+                      ->references('title')->on('adverts')
+                      ->onDelete('cascade');
         });
         }
         /**
@@ -24,6 +28,7 @@
         public function down(){
             Schema::table('answers', function(Blueprint $table){
                 $table->dropColumn('advert_id');
+                $table->dropColumn('advert_title');
             });
         }
     }

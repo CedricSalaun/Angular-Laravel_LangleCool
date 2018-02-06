@@ -7,9 +7,16 @@ img {
 .card > a{
   color: black;
 }
-.card > a:hover{
-  color: #f5b149;
+.card > a:hover, a.navbar-item:hover{
+  color: #f5b149!important;
 }
 h1{
   margin-top: 15px;
+}
+ul.pagination-list > li > a, a.pagination-next, a.pagination-previous{
+  color: black;
+}
+a.is-current{
+  background: #f5b149;
+  border-color: #9a6f2e;
 }

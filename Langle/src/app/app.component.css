@@ -1,5 +1,5 @@
-a.navbar-item:hover{
-  color: #fcaf3e;
+a.navbar-item:hover, a.navbar-link:hover{
+  color: #fcaf3e!important;
 }
 
 .connect{

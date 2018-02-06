@@ -26,6 +26,18 @@ class AddForignkeyAdverts extends Migration
             $table->foreign('location_id')
                   ->references('id')->on('locations')
                   ->onDelete('set null');
+            $table->integer('user_name')->unsigned()->nullable();
+            $table->foreign('user_name')
+                  ->references('firstname')->on('users')
+                  ->onDelete('cascade');
+            $table->integer('category_name')->unsigned()->nullable();
+            $table->foreign('category_name')
+                  ->references('name')->on('categories')
+                  ->onDelete('set null');
+            $table->integer('location_name')->unsigned()->nullable();
+            $table->foreign('location_name')
+                  ->references('name')->on('locations')
+                  ->onDelete('set null');
         });
     }
 
@@ -40,6 +52,9 @@ class AddForignkeyAdverts extends Migration
             $table->dropColumn('user_id');
             $table->dropColumn('category_id');
             $table->dropColumn('location_id');
+            $table->dropColumn('user_name');
+            $table->dropColumn('category_name');
+            $table->dropColumn('location_name');
         });
     }
 }
