@@ -1,56 +1,84 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { FormGroup, NgForm } from "@angular/forms";
 
+import { AdvertsService } from '../../services/adverts.service';
+import { LocationsService } from '../../services/locations.service';
+import { CategoriesService } from '../../services/categories.service';
+import { FileUploadService } from '../../services/fileUpload.service';
 
 @Component({
-  selector: 'app-new-advert',
-  templateUrl: './new-advert.component.html',
-  styleUrls: ['./new-advert.component.css']
+    selector: 'app-new-advert',
+    templateUrl: './new-advert.component.html',
+    styleUrls: [ './new-advert.component.css' ]
 })
 export class NewAdvertComponent implements OnInit {
 
-  //TODO initialiser le is_active a true
+    public advert;
+    public categories: any = [];
+    public locations: any = [];
+    public users: any;
+    public fileToUpload: File = null;
 
-  private submitted = false;
-  advert: any;
-  categories: any;
-  locations: any;
-  users: any;
-  results: any;
+    constructor(private http: HttpClient, private _advert: AdvertsService, private _fileUploadService: FileUploadService,
+                private _location: LocationsService, private _category: CategoriesService) {
+    }
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
-  }
+    public ngOnInit(): any {
+        this._category.listCategories().subscribe(
+            res => this.categories = res['categories'],
+            error => console.error(error)
+        );
+        this._location.listLocations().subscribe(
+            res => this.locations = res['locations'],
+            error => console.error(error)
+        );
 
-  ngOnInit(): any {
-    this.getSelects(this.route.snapshot.params['id']);
-  }
+        this.advert = {
+            title: null,
+            description: null,
+            price: null,
+            location: null,
+            category: null
+        };
+        // this.advertForm = this.form.group({
+        //     title: [ '' ],
+        //     description: [ this.advert.description ],
+        //     price: [ this.advert.price, [ Validators.required ] ],
+        //     url_photo: [ this.advert.url_photo ],
+        // });
+        // this.getSelects(this.route.snapshot.params[ 'id' ]);
+    }
 
-  getSelects(id): any {
-    let url = 'http://localhost:8000/api/adverts/new/' + id;
-    this.http.get(url)
-      .subscribe(data => {
-        this.categories = data["categories"];
-        this.locations = data["locations"];
-      });
-  }
+    public handleFileInput(files: FileList) {
+        this.fileToUpload = files.item(0);
+        console.log(this.fileToUpload);
+    }
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+    public onSubmit(form: NgForm) {
+        this.uploadFileToActivity();
+        this.advert = {
+            title: form.value.title,
+            description: form.value.description,
+            price: form.value.price,
+            location_id: form.value.location,
+            category_id: form.value.category,
+            is_active: '0'
+        };
+    }
 
-  onSubmit(form: NgForm): Promise<any> {
-    let url = "http://localhost:8000/api/adverts/new";
+    private uploadFileToActivity() {
+        this._fileUploadService.postFile(this.fileToUpload).subscribe(() => {
+            this.advert.url_photo = "'"+ this.fileToUpload.name +"'";
+        }, error => {
+            console.log(error);
+        }, () => { this.createAdvert();});
+    }
 
-    return this.http.post(url, JSON.stringify(form.value))
-      .toPromise()
-      .then(res => console.log('tahi'))
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
-
-
+    private createAdvert () {
+        this._advert.createAdvert(this.advert).subscribe(
+            result => console.log('result', result),
+            error => console.log('error', error)
+        );
+    }
 }

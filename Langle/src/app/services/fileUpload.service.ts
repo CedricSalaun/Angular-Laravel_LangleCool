@@ -4,12 +4,20 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-export class AdvertsService {
+export class FileUploadService {
     private apiURL = "http://localhost:8000/api";
-    public headers = new HttpHeaders().set('Content-Type', 'application/json' );
+    public headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
     constructor(private http: HttpClient) {}
+
+    public postFile(fileToUpload: File): Observable<boolean> {
+        const endpoint = this.apiURL + "/files/new";
+        const formData: FormData = new FormData();
+        formData.append('fileKey', fileToUpload, fileToUpload.name);
+        return this.http.post<any>(endpoint, formData)
+        // return this.http.post<any>(endpoint, formData, { headers: yourHeadersConfig })
+    }
 
     public createAdvert(data): Observable<any> {
         console.log('advert', data);

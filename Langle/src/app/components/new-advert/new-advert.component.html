@@ -1,74 +1,85 @@
 <h1 class="is-centered">Ajouter une annonce</h1>
 <div class="column">
-  <form (ngSubmit)="onSubmit(fm)" #fm="ngForm">
-    <div class="field">
-      <label class="label" for="title">Titre</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="Titre" id="title" name="title" ngModel >
-      </div>
-    </div>
-    <div class="field">
-      <label class="label" for="price">Prix</label>
-      <div class="control">
-        <input class="input" type="number" placeholder="Prix" id="price" name="price" ngModel >
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Description</label>
-      <div class="control">
-        <textarea class="textarea" placeholder="Ici la description" name="description" ngModel ></textarea>
-      </div>
-    </div>
-    <!--select-->
-    <div class="field">
-      <div class="control is-left">
-        <label class="file-label">Categories
-        </label>
-        <div class="select">
-          <select title="categories" id="category" name="category">
-            <option *ngFor="let category of categories">{{category?.name}}</option>
-          </select>
+    <form (ngSubmit)="onSubmit(advertForm)" #advertForm="ngForm">
+        <div class="field">
+            <label class="label" for="title">Titre</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Titre" id="title" name="title"
+                       [(ngModel)]="advert.title" #title="ngModel" required>
+                <div [hidden]="title.valid || title.pristine || title.onblur"
+                     class="alert alert-danger">
+                    Le titre est requis
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="control is-right">
-        <label class="file-label">Départements</label>
-        <div class="select">
-          <select title="locations" id="location" name="location">
-            <option *ngFor="let location of locations" value="[ngModel]">{{location?.name}}</option>
-          </select>
+        <div class="field">
+            <label class="label" for="price">Prix</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="Prix" id="price" name="price" [(ngModel)]="advert.price"
+                       #price="ngModel" required>
+                <div [hidden]="price.valid || price.pristine"
+                     class="alert alert-danger">
+                    Le prix est requis
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox">
-          I agree to the <a>terms and conditions</a>
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="file has-name">
-        <label class="file-label">
-          <input class="file-input" type="file" name="resume" id="pic">
-          <span class="file-cta">
+        <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="Ici la description" name="description"
+                          [(ngModel)]="advert.description" required></textarea>
+                <div [hidden]="price.valid || price.pristine"
+                     class="alert alert-danger">
+                    Le prix est requis
+                </div>
+            </div>
+        </div>
+        <!--select-->
+        <div class="field">
+            <div class="control is-left">
+                <label class="file-label">Categories
+                </label>
+                <div class="select">
+                    <select title="categories" id="category" name="category" required [(ngModel)]="categories.id">
+                        <option *ngFor="let category of categories" [value]="category.id">
+                            {{ category?.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="control is-right">
+                <label class="file-label">Départements</label>
+                <div class="select">
+                    <select title="locations" id="location" name="location" required [(ngModel)]="locations.id">
+                        <option *ngFor="let location of locations" [value]="location.id">
+                            {{ location?.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--file-->
+        <div class="field">
+            <div class="file has-name">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume" id="pic" (change)="handleFileInput($event.target.files)">
+                    <span class="file-cta">
                         <span class="file-icon"><i class="fa fa-upload"></i></span>
-                        <span class="file-label">Choose a file…</span>
+                        <span class="file-label">Ajouter une photo</span>
                     </span>
-          <span class="file-name">Met le fichier wesh</span>
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link" type="submit">Submit</button>
+                    <span class="file-name">{{ fileToUpload?.name }}</span>
+                </label>
+            </div>
         </div>
-        <div class="control">
-          <button class="button is-text">Cancel</button>
+        <div class="field">
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit" [disabled]="!advertForm.form.valid">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="button is-text" type="button" (click)="advertForm.reset()">Cancel</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </form>
+    </form>
 </div>
-

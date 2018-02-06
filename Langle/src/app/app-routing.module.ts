@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { RouterModule, Routes } from "@angular/router";
 import { AdvertsComponent } from "./components/adverts/adverts.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -10,9 +11,10 @@ import { ShowComponent } from "./components/show/show.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { AnswersComponent } from "./components/answers/answers.component";
 import { NewAdvertComponent } from "./components/new-advert/new-advert.component";
+import { LoginGuard } from './login-guard.service';
 
 const routes: Routes = [
-    { path: '', component: AdvertsComponent },
+    { path: '', component: AdvertsComponent, canActivate: [ LoginGuard ] },
     { path: 'identification', component: LoginComponent },
     { path: 'categories', component: CategoriesComponent },
     { path: 'utilisateurs', component: UsersComponent },
@@ -26,10 +28,11 @@ const routes: Routes = [
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(routes, {enableTracing: false})
+        RouterModule.forRoot(routes, { useHash: true, enableTracing: true })
     ],
     declarations: [],
-    exports: [RouterModule]
+    exports: [ RouterModule ],
+    providers: [ LoginGuard ]
 })
-export class AppRoutingModule{
+export class AppRoutingModule {
 }

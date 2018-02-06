@@ -8,3 +8,10 @@ h1{
 .is-left{
   margin-right: 3em;
 }
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #23d160; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #e23237; /* red */
+}

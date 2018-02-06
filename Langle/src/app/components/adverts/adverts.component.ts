@@ -15,6 +15,7 @@ export class AdvertsComponent implements OnInit{
     results: any;
 
     public title = 'L\'Angle Cool';
+    public file_src = 'https://bulma.io/images/placeholders/1280x960.png';
 
     constructor(private http: HttpClient){
     }

@@ -1,5 +1,9 @@
 <?php
 
+//$app->configure('cors');
+
+//$app->register(Barryvdh\Cors\ServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
